@@ -389,15 +389,11 @@ ggplot(data, aes(x=x)) +
   geom_point(aes(y=y)) +
   geom_line(aes(y=fit), color='blue') +
   annotate('text', x=9, y=9.5, 
-           label=latex2exp::TeX('$\\hat{\\rho}$ = 0.916') ) +   # always double \\
-  labs( x=latex2exp::TeX('X-axis $\\alpha$'), 
-        y=latex2exp::TeX('Y: $\\log_{10}$(Income)'),
-        title=latex2exp::TeX('Linear Models use: $\\hat{\\beta} = (X^TX)^{-1}X^Ty$'))
+           label=latex2exp::TeX('$\\hat{\\rho}$ = 0.916'), output="character" ) +   # always double \\
+  labs( x=latex2exp::TeX('X-axis $\\alpha$', output="character"), 
+        y=latex2exp::TeX('Y: $\\log_{10}$(Income)', output="character"),
+        title=latex2exp::TeX('Linear Models use: $\\hat{\\beta} = (X^TX)^{-1}X^Ty$', output="character"))
 ```
-
-The warning message that is produced is coming from `ggplot` and I haven't
-figured out how to avoid it. Because it is giving us the graph we want, I'm just
-going to ignore the error for now.
 
 One issue is how to add expression to a data frame. Unfortunately, neither
 `data.frame` nor `tibble` will allow a column of expressions, so instead we have
